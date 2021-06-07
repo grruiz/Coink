@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "566586971040",
+    "project_id": "coink-626f8",
+    "storage_bucket": "coink-626f8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:566586971040:android:20cc73063afcef8abfcac5",
+        "android_client_info": {
+          "package_name": "com.fpr.appcoink"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "566586971040-mh72jm93vskuqljlsfo9idb4efvuu496.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fpr.appcoink",
+            "certificate_hash": "2cbf11cd6cf6d795bd0eeca4abdb4da4604dfb15"
+          }
+        },
+        {
+          "client_id": "566586971040-1q66lvok4pl7jcin2qv04oj9ogf5fqa6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1jduNJNA9v_ww8liNeTjgeB6IFOT4Z54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "566586971040-1q66lvok4pl7jcin2qv04oj9ogf5fqa6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
