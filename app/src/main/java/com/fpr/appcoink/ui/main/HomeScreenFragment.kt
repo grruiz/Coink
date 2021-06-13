@@ -30,15 +30,20 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
         binding = FragmentHomeScreenBinding.bind(view)
 
         viewModel.fetchLatestPosts().observe(viewLifecycleOwner, Observer { result ->
-            Log.d("Datos puto", "result: ${result}")
             when (result) {
                 is Result.Loading -> {
                     binding.progressBar.show()
                 }
                 is Result.Success -> {
                     binding.progressBar.hide()
-                    Toast.makeText(requireContext(), "datos ${result.data.first().profile_name}",Toast.LENGTH_SHORT).show()
+                    if(result.data.isEmpty()){
+                        binding.emptyContainer.show()
+                        return@Observer
+                    }else{
+                        binding.emptyContainer.hide()
+                    }
                     binding.rvHome.adapter = HomeScreenAdapter(result.data)
+
                 }
                 is Result.Failure -> {
                     binding.progressBar.hide()
@@ -51,6 +56,4 @@ class HomeScreenFragment : Fragment(R.layout.fragment_home_screen) {
             }
         })
     }
-
-
 }

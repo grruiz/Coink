@@ -9,7 +9,14 @@
         android:id="@+id/homeScreenFragment"
         android:name="com.fpr.appcoink.ui.main.HomeScreenFragment"
         android:label="fragment_home_screen"
-        tools:layout="@layout/fragment_home_screen" />
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreenFragment_to_editFragment"
+            app:destination="@id/editFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.fpr.appcoink.ui.auth.LoginFragment"
@@ -73,5 +80,30 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="com.fpr.appcoink.ui.editpost.EditFragment"
+        android:label="fragment_edit"
+        tools:layout="@layout/fragment_edit" >
+        <action
+            android:id="@+id/action_editFragment_to_homeScreenFragment"
+            app:destination="@id/homeScreenFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <argument
+            android:name="postDescExpense"
+            app:argType="string" />
+        <argument
+            android:name="postExpense"
+            app:argType="string" />
+        <argument
+            android:name="uuid"
+            app:argType="string" />
     </fragment>
 </navigation>

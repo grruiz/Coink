@@ -3,9 +3,13 @@ package com.fpr.appcoink.data.remote.auth
 import android.graphics.Bitmap
 import android.net.Uri
 import com.fpr.appcoink.data.model.User
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
@@ -43,5 +47,10 @@ class AuthDataSource {
 
     suspend fun getUser(): FirebaseUser? {
         return FirebaseAuth.getInstance().currentUser
+    }
+
+    suspend fun getPostDocument(documentReference: String){
+        val user = FirebaseAuth.getInstance().currentUser
+        val docRef = FirebaseFirestore.getInstance().collection(user?.email.toString()).document(documentReference).get()
     }
 }

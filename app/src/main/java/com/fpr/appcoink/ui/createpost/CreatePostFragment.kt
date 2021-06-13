@@ -1,10 +1,9 @@
 package com.fpr.appcoink.ui.createpost
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -33,20 +32,33 @@ class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
         binding = FragmentCreatePostBinding.bind(view)
 
         binding.btnCreatePost.setOnClickListener {
-            viewModel.uploadPost(post_expense = binding.editTextExpense.text.toString().trim(), post_desc_expense = binding.editTextDescExpense.text.toString().trim() ).observe(viewLifecycleOwner, { result ->
-                when(result){
-                    is Result.Loading -> {
-                        Toast.makeText(requireContext(),"Uploading post", Toast.LENGTH_SHORT).show()
+            if (!binding.editTextDescExpense.text.isNullOrEmpty() && !binding.editTextExpense.text.isNullOrEmpty()) {
+                Log.d("Cosa", "onViewCreated: AAAAAAAAAAA")
+                viewModel.uploadPost(
+                    post_expense = binding.editTextExpense.text.toString().trim(),
+                    post_desc_expense = binding.editTextDescExpense.text.toString().trim()
+                ).observe(viewLifecycleOwner, { result ->
+                    when (result) {
+                        is Result.Loading -> {
+                            Toast.makeText(requireContext(), "Uploading post", Toast.LENGTH_SHORT)
+                                .show()
+                        }
+                        is Result.Success -> {
+                            findNavController().navigate(R.id.action_createPostFragment_to_homeScreenFragment)
+                        }
+                        is Result.Failure -> {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error ${result.exception}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
-                    is Result.Success -> {
-                        findNavController().navigate(R.id.action_createPostFragment_to_homeScreenFragment)
-                    }
-                    is Result.Failure -> {
-                        Toast.makeText(requireContext(), "Error ${result.exception}", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            })
+                })
+            }
+                Toast.makeText(requireContext(), "No se ha podido crear el gasto, rellena todos los campos por favor", Toast.LENGTH_SHORT)
+                    .show()
+
         }
     }
-
 }

@@ -2,7 +2,10 @@ package com.fpr.appcoink.domain.auth
 
 import android.graphics.Bitmap
 import com.fpr.appcoink.data.remote.auth.AuthDataSource
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.DocumentSnapshot
 
 
 class AuthRepoImp(private val dataSource:AuthDataSource): AuthRepo {
@@ -18,5 +21,9 @@ class AuthRepoImp(private val dataSource:AuthDataSource): AuthRepo {
 
     override suspend fun getUser(): FirebaseUser? =
         dataSource.getUser()
+
+    override suspend fun getPostDocument(documentReference: String)  =
+        dataSource.getPostDocument(documentReference)
+
 
 }

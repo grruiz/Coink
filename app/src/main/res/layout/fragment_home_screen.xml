@@ -5,7 +5,23 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#eeeeee"
     tools:context=".ui.main.HomeScreenFragment">
+
+
+
+    <RelativeLayout
+        android:id="@+id/splash_nscreen"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/coink"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/progress_bar"
@@ -18,11 +34,43 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/empty_container"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_baseline_error_outline_24"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:text="Aún no se ha creado ningún gasto, crea un gasto en la opción de crear un post"
+                android:layout_centerInParent="true"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        app:reverseLayout="true"
+        app:stackFromEnd="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 </LinearLayout>

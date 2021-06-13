@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.fpr.appcoink.core.Result
 import com.fpr.appcoink.domain.auth.AuthRepo
+import com.google.firebase.firestore.DocumentReference
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 
@@ -42,6 +43,15 @@ class AuthViewModel(private val repo:AuthRepo):ViewModel() {
         emit(Result.Loading())
         try{
             emit(Result.Success(repo.getUser()))
+        }catch (e:Exception){
+            emit(Result.Failure(e))
+        }
+    }
+
+    fun getPostDocument(documentReference: String) = liveData(Dispatchers.IO) {
+        emit(Result.Loading())
+        try{
+            emit(Result.Success(repo.getPostDocument(documentReference)))
         }catch (e:Exception){
             emit(Result.Failure(e))
         }
