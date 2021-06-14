@@ -15,6 +15,7 @@ class HomeScreenDataSource {
         val querySnapshot = FirebaseFirestore.getInstance().collection(user?.email.toString()).get().await()
         for (post in querySnapshot.documents){
             post.toObject(Post::class.java)?.let {
+                it.apply { querySnapshot.documents }
                 it.apply { post_timestamp = post.getTimestamp("post_timestamp", DocumentSnapshot.ServerTimestampBehavior.ESTIMATE)?.toDate() }
                 postList.add(it)
             }

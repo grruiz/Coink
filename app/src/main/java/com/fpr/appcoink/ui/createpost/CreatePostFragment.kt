@@ -55,9 +55,9 @@ class CreatePostFragment : Fragment(R.layout.fragment_create_post) {
                         }
                     }
                 })
+            }else{
+                Toast.makeText(requireContext(), "No se ha podido crear el gasto, rellena todos los campos por favor", Toast.LENGTH_SHORT).show()
             }
-                Toast.makeText(requireContext(), "No se ha podido crear el gasto, rellena todos los campos por favor", Toast.LENGTH_SHORT)
-                    .show()
 
         }
     }
